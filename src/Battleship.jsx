@@ -62,7 +62,6 @@ const Battleship = () => {
     setBoxes(newArray);
   }
 
-  //Check winner
   function checkWinner() {
     if (playerPoints === 0) {
       setDisplay("Gundam Wins!");
@@ -70,7 +69,7 @@ const Battleship = () => {
       setDisplay("You Win!");
     }
   }
-  //Cpu logic
+
   function cpu(cols) {
     let newArray = [];
     for (let i = 0; i < cols; i++) {
@@ -104,7 +103,7 @@ const Battleship = () => {
       } else if (enemyTiles[i][j] === 0) {
         changeBoxValue(enemyTiles, setEnemyTiles, 3, i, j);
       }
-      cpu(10); // Call the cpu() function after each player move
+      cpu(10);
     }
   }
   useEffect(() => {
