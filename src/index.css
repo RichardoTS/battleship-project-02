@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+
+body {
+    background: #5454C5;
+    color: #220E24;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.svg {
+    height: 20px;
+}
+
+.main-screen,
+.board-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.titlebar {
+    position: relative;
+    color: black;
+    width: 100%;
+    height: 50px;
+    background-color: #BBE1FA;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-screen button {
+    padding: 10px 50px;
+    font-size: 20px;
+    margin-top: 10%;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #000;
+    transition: all 0.2s;
+}
+
+.main-screen button:hover {
+    border: 1px solid #000;
+    color: #000;
+    background-color: #fff;
+}
+
+.instructions .rules {
+    padding: 10px 30px;
+    font-size: 20px;
+    margin-top: 1%;
+    margin-right: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #000;
+    transition: all 0.2s;
+}
+
+.instructions .fleet {
+    padding: 10px 30px;
+    font-size: 20px;
+    margin-top: 1%;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #000;
+    transition: all 0.2s;
+}
+
+.instructions button:hover {
+    border: 1px solid #000;
+    color: #000;
+    background-color: #fff;
+}
+
+.instructions-header {
+    font-weight: 900;
+    font-size: 25px;
+}
+
+.instructions div {
+    margin-top: 10px;
+}
+
+/* Testing */
+
+.box-container {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    background-color: #7895CB;
+}
+
+.box:hover {
+    opacity: 70%;
+    cursor: crosshair;
+}
+
+.red {
+    background-color: #AF0404;
+}
+
+.black {
+    background-color: #3E333F;
+}
+
+.dark-gray {
+    background-color: #414141;
+}
+
+.winner {
+    margin: auto;
+    text-align: center;
+    color: black;
+}
