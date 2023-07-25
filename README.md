@@ -4,6 +4,10 @@
 
 After you open through GitHub Codespaces, GitPod, or Downloaded it, you can run:
 
+### `npm i `
+
+To install all dependencies. Then
+
 ### `npm start`
 
 A new webpage will be opened.\
