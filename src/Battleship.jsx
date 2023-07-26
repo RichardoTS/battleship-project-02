@@ -106,6 +106,7 @@ const Battleship = () => {
       cpu(10);
     }
   }
+
   useEffect(() => {
     gameBoard(10, setPlayerBoxes, setPlayerPoints);
     gameBoard(10, setEnemyTiles, setEnemyPoints);
