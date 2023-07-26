@@ -20,7 +20,7 @@ Players alternate turns calling "shots" at the other player's ships, and the obj
 
 ### The fleet
 
-You will have the following ships at your disposal:
+You will have the following ships at your disposal:\
 -Carrier.\
 -Battleship.\
 -Destroyer.\
