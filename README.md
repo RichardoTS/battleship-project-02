@@ -11,7 +11,7 @@ To install all dependencies, such as React-Icons. Then
 ### `npm start`
 
 A new webpage will be opened.\
-You can also open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You can also open [http://localhost:3000](http://localhost:3000) to view it on your browser.
 
 ## Battleship
 
