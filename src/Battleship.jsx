@@ -1,38 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Loadscreen from "./components/Loadscreen/Loadscreen";
 
-// import Axis from "./components/Axis/Axis";
 import Title from "./components/Title/Title";
 import Instructions from "./components/Instructions/Instructions";
 import Boardgame from "./components/Boardgame/Boardgame";
 import Gameresults from "./components/GameResults/Gameresults";
 
-// import Sound from "./components/Sound/Sound";
-// import { useRef } from "react";
+import Sound from "./components/Sound/Sound";
 
 const Battleship = () => {
   const [hasJoined, setHasJoined] = useState(false);
-  // const clickSoundRef = useRef(null);
+  const clickSoundRef = useRef(null);
 
   const [playerBoxes, setPlayerBoxes] = useState([]);
   const [enemyTiles, setEnemyTiles] = useState([]);
   const [playerPoints, setPlayerPoints] = useState(null);
   const [enemyPoints, setEnemyPoints] = useState(null);
   const [display, setDisplay] = useState(null);
+  const [clickedBlocks, setClickedBlocks] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
 
-  // const stopSound = (sound) => {
-  //   sound.current.pause();
-
-  //   sound.current.currentTime = 0;
-  // };
-
-  // const playSound = (sound) => {
-  //   if (sound === "click") {
-  //     // stopSou4nd(clickSoundRef);
-  //     clickSoundRef.current.play();
-  //   }
-  // };
+  const playSound = (sound) => {
+    if (sound === "click") {
+      clickSoundRef.current.play();
+    }
+  };
 
   function gameBoard(cols, setBoxes, setPoints) {
     const newArray = Array.from({ length: cols }, () =>
@@ -62,11 +55,25 @@ const Battleship = () => {
     setBoxes(newArray);
   }
 
+  const resetGame = () => {
+    setPlayerBoxes([]);
+    setEnemyTiles([]);
+    setPlayerPoints(null);
+    setEnemyPoints(null);
+    setDisplay(null);
+    setClickedBlocks([]);
+    setGameOver(false);
+    gameBoard(10, setPlayerBoxes, setPlayerPoints);
+    gameBoard(10, setEnemyTiles, setEnemyPoints);
+  };
+
   function checkWinner() {
     if (playerPoints === 0) {
       setDisplay("Gundam Wins!");
+      setGameOver(true);
     } else if (enemyPoints === 0) {
       setDisplay("You Win!");
+      setGameOver(true);
     }
   }
 
@@ -96,13 +103,22 @@ const Battleship = () => {
   }
 
   function handleClick(type, i, j) {
+    if (
+      gameOver ||
+      clickedBlocks.find((block) => block.i === i && block.j === j)
+    ) {
+      return;
+    }
+
     if (type === "Gundam") {
+      playSound("click");
       if (enemyTiles[i][j] === 1) {
         changeBoxValue(enemyTiles, setEnemyTiles, 2, i, j);
         setEnemyPoints(enemyPoints - 1);
       } else if (enemyTiles[i][j] === 0) {
         changeBoxValue(enemyTiles, setEnemyTiles, 3, i, j);
       }
+      setClickedBlocks([...clickedBlocks, { i, j }]);
       cpu(10);
     }
   }
@@ -115,18 +131,18 @@ const Battleship = () => {
   useEffect(() => {
     checkWinner();
   });
+
   useEffect(() => {}, [playerBoxes]);
 
   if (!hasJoined) {
-    // playSound("click");
     return <Loadscreen onClick={() => setHasJoined(true)} />;
   }
 
   return (
     <div>
-      {/* <Sound clickSoundRef={clickSoundRef} /> */}
       <Title />
-      <Instructions />
+      <Sound clickSoundRef={clickSoundRef} />
+      <Instructions onReset={resetGame} />
 
       {["You", "Gundam"].map((type) => (
         <Boardgame

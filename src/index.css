@@ -67,6 +67,19 @@ body {
     padding: 10px 30px;
     font-size: 20px;
     margin-top: 1%;
+    margin-right: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #000;
+    transition: all 0.2s;
+}
+
+.instructions .reset {
+    padding: 10px 30px;
+    font-size: 20px;
+    margin-top: 1%;
     cursor: pointer;
     border-radius: 4px;
     border: 1px solid #fff;
@@ -118,7 +131,7 @@ body {
 }
 
 .black {
-    background-color: #3E333F;
+    background-color: black;
 }
 
 .dark-gray {

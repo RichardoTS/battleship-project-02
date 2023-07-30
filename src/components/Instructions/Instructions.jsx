@@ -5,7 +5,7 @@ import { GiShipBow } from "react-icons/gi";
 import { TbSubmarine } from "react-icons/tb";
 import { BiSolidShip } from "react-icons/bi";
 
-const Instructions = ({ onClick }) => {
+const Instructions = ({ onReset, onClick }) => {
   const [showInstructions, setShowInstructions] = useState(false);
   const [showShips, setShowShips] = useState(false);
 
@@ -67,6 +67,9 @@ const Instructions = ({ onClick }) => {
       ) : (
         ""
       )}
+      <button onClick={onReset} className="reset">
+        Reset Game
+      </button>
     </div>
   );
 };
