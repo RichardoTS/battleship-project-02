@@ -1,3 +1,5 @@
+// Component responsible to act as a starting point of the game
+
 const Loadscreen = ({ onClick }) => {
   return (
     <div className="main-screen">

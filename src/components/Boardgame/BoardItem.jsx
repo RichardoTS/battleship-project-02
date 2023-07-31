@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+// Component responsible to set the color of each block based on the value and type prop.
+
 function BoardItem(props) {
   const [color, setColor] = useState("");
 

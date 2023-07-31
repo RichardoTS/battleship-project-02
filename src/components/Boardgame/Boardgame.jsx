@@ -1,5 +1,7 @@
 import BoardItem from "./BoardItem";
 
+// Component responsible of rendering the board for each player (i.e. the Player and CPU)
+
 function BoardContainer(props) {
   const { type, boxes, handleClick } = props;
 

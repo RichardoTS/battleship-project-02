@@ -5,6 +5,8 @@ import { GiShipBow } from "react-icons/gi";
 import { TbSubmarine } from "react-icons/tb";
 import { BiSolidShip } from "react-icons/bi";
 
+// Component responsible to render the instructions, the fleet and reset the game.
+
 const Instructions = ({ onReset, onClick }) => {
   const [showInstructions, setShowInstructions] = useState(false);
   const [showShips, setShowShips] = useState(false);

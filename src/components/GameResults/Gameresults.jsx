@@ -1,5 +1,7 @@
 import React from "react";
 
+// Component responsible the winner of each game.
+
 const Gameresults = ({ message }) => {
   return (
     <div>

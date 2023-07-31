@@ -1,32 +1,38 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import Loadscreen from "./components/Loadscreen/Loadscreen";
-
+import Sound from "./components/Sound/Sound";
 import Title from "./components/Title/Title";
 import Instructions from "./components/Instructions/Instructions";
-import Boardgame from "./components/Boardgame/Boardgame";
 import Gameresults from "./components/GameResults/Gameresults";
-
-import Sound from "./components/Sound/Sound";
+import Boardgame from "./components/Boardgame/Boardgame";
 
 const Battleship = () => {
+  // State to track whether the player has joined
   const [hasJoined, setHasJoined] = useState(false);
+
+  // State to refer to the audio element
   const clickSoundRef = useRef(null);
 
+  // Common states. Player and CPU
   const [playerBoxes, setPlayerBoxes] = useState([]);
   const [enemyTiles, setEnemyTiles] = useState([]);
   const [playerPoints, setPlayerPoints] = useState(null);
   const [enemyPoints, setEnemyPoints] = useState(null);
+
+  //Game States
   const [display, setDisplay] = useState(null);
   const [clickedBlocks, setClickedBlocks] = useState([]);
   const [gameOver, setGameOver] = useState(false);
 
+  // Function to play the sound when called
   const playSound = (sound) => {
     if (sound === "click") {
       clickSoundRef.current.play();
     }
   };
 
+  // Function to generate a new game board for a player
   function gameBoard(cols, setBoxes, setPoints) {
     const newArray = Array.from({ length: cols }, () =>
       Array.from({ length: cols }, () => 0)
@@ -55,6 +61,7 @@ const Battleship = () => {
     setBoxes(newArray);
   }
 
+  // Function to reset the game state.
   const resetGame = () => {
     setPlayerBoxes([]);
     setEnemyTiles([]);
@@ -67,6 +74,7 @@ const Battleship = () => {
     gameBoard(10, setEnemyTiles, setEnemyPoints);
   };
 
+  // Function to check if there is a winner
   function checkWinner() {
     if (playerPoints === 0) {
       setDisplay("Gundam Wins!");
@@ -77,6 +85,7 @@ const Battleship = () => {
     }
   }
 
+  // Function represents the CPU's moves
   function cpu(cols) {
     let newArray = [];
     for (let i = 0; i < cols; i++) {
@@ -96,12 +105,14 @@ const Battleship = () => {
     }
   }
 
+  // Utility function used to update the value of a cell
   function changeBoxValue(boxes, setBoxes, value, i, j) {
     let newArray = [...boxes];
     newArray[i].splice(j, 1, value);
     setBoxes(newArray);
   }
 
+  // Function responsible for handling a click event on a block
   function handleClick(type, i, j) {
     if (
       gameOver ||
@@ -123,21 +134,27 @@ const Battleship = () => {
     }
   }
 
+  // Hook to render the game boards
   useEffect(() => {
     gameBoard(10, setPlayerBoxes, setPlayerPoints);
     gameBoard(10, setEnemyTiles, setEnemyPoints);
   }, []);
 
+  // Hook to check if there is a winner
   useEffect(() => {
     checkWinner();
   });
 
+  // hook triggered when the playerBoxes state changes
   useEffect(() => {}, [playerBoxes]);
 
+  // Condition to determine whether the player has joined the game or not
   if (!hasJoined) {
     return <Loadscreen onClick={() => setHasJoined(true)} />;
   }
 
+  // Sets up the main structure of the game.
+  // It renders the title, sound, instructions, the player's and CPU's boards and the final result when the game is over.
   return (
     <div>
       <Title />
