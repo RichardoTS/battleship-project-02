@@ -32,7 +32,7 @@ const Battleship = () => {
     }
   };
 
-  // Function to generate a new game board for a player
+  // Function to generate the boards for each player
   function gameBoard(cols, setBoxes, setPoints) {
     const newArray = Array.from({ length: cols }, () =>
       Array.from({ length: cols }, () => 0)
